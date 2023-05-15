@@ -2,6 +2,7 @@ import config
 from button import sender
 import main
 from config import count
+from config import offset
 
 for event in main.bot.longpoll.listen():
     if event.type == main.VkEventType.MESSAGE_NEW and event.to_me:
@@ -11,22 +12,20 @@ for event in main.bot.longpoll.listen():
             main.creating_database()
             main.bot.write_msg(user_id, f'Привет, {main.bot.user_info(user_id, field = 1)}')
             main.bot.send_sticker(user_id)
-            candidate_information = main.bot.find_user(user_id, count)
+            candidate_information = main.bot.find_user(user_id, count, offset)
             while candidate_information is None:
-                count += 1
-                print(count)
-                candidate_information = main.bot.find_user(user_id, count)
+                offset += 100
+                candidate_information = main.bot.find_user(user_id, count, offset)
             else:
                 main.bot.write_msg(event.user_id, f'Нашёл для тебя пару, что бы продолжить нажми "Далее..."')
                 main.bot.find_persons(user_id,  candidate_information)
         elif request == 'далее...':
             main.creating_database()
             for i in main.line:
-                candidate_information = main.bot.find_user(user_id, count)
+                candidate_information = main.bot.find_user(user_id, count, offset)
                 while candidate_information is None:
-                    count += 1
-                    print(count)
-                    candidate_information = main.bot.find_user(user_id, count)
+                    offset += 100
+                    candidate_information = main.bot.find_user(user_id, count, offset)
                 else:
                     main.bot.find_persons(user_id, candidate_information)
                 break
