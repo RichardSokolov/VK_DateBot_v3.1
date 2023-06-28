@@ -51,6 +51,5 @@ def drop_seen_users():
 def creating_database():
     create_table_seen_users()
 
-
 def drop_table():
     drop_seen_users()

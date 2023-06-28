@@ -18,7 +18,7 @@ keyboard = {
     "buttons": [
         [get_button('Начать поиск', 'primary')],
         [get_button('Далее...', 'primary')],
-        [get_button('Профиль', 'secondary')],
+        [get_button('Профиль', 'primary')],
         [get_button('Очистить данные', 'secondary')]
     ]
 }

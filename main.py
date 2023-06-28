@@ -1,10 +1,8 @@
 import vk_api
-import requests
 import datetime
 from vk_api.longpoll import VkLongPoll, VkEventType
 from random import randrange
-from config import user_token, group_token, line
-from database import select_seen
+from config import user_token, group_token
 from database import *
 from vk_api.exceptions import ApiError
 
